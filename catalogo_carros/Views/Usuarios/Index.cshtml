@@ -1,0 +1,48 @@
+﻿@model IEnumerable<catalogo_carros.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="NovoUsuario" class="btn btn-primary">Novo Usuario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+            <td>
+                <a asp-action="AtualizarUsuario" asp-route-usuarioid="@item.UsuarioId" class="btn btn-primary">Atualizar Usuario</a> |
+                    <form asp-action="ExcluirUsuario" asp-route-usuarioid="@item.UsuarioId">
+                        <button type="submit" class="btn btn-danger">Excluir Usuario</button>
+                    </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
